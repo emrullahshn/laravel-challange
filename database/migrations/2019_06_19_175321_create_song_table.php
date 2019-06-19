@@ -13,7 +13,7 @@ class CreateSongTable extends Migration
      */
     public function up()
     {
-        Schema::create('song', function (Blueprint $table) {
+        Schema::create('songs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('link');

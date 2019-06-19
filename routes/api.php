@@ -22,4 +22,9 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'info'], static function (
     Route::get('/', 'Api\ApplicationController@index');
 });
 
+Route::group(['middleware' => 'auth:api', 'prefix' => 'categories'], static function () {
+    Route::get('/', 'Api\CategoryController@getAll');
+    Route::post('/{id}', 'Api\CategoryController@getCategoryDetails');
+});
+
 

@@ -16,8 +16,9 @@ class CreateCategorySongTable extends Migration
         Schema::create('category_song', function (Blueprint $table) {
             $table->integer('category_id')->unsigned();
             $table->integer('song_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
-            $table->foreign('song_id')->references('id')->on('song')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('song_id')->references('id')->on('songs')->onDelete('cascade');
+            $table->unique(['category_id', 'song_id']);
         });
     }
 

@@ -13,4 +13,12 @@ class Song extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the user that owns the song.
+     */
+    public function category()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }
