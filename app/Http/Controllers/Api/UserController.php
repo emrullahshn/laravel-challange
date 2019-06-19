@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 
 use App\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +13,11 @@ use Illuminate\Support\Str;
 
 class UserController
 {
-    public function login(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function login(Request $request): JsonResponse
     {
         $params =$request->all();
 
@@ -37,15 +42,13 @@ class UserController
         ]);
     }
 
+    /**
+     * @return JsonResponse|User
+     */
     public function user()
     {
         $user = Auth::guard('api')->user();
-        if (!$user) {
-            return response()->json([
-                'status' => 401,
-                'message' => 'Unauthenticated.'
-            ]);
-        }
+
         return $user;
     }
 }

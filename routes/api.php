@@ -12,10 +12,14 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/', 'Api\ApplicationController@index');
 Route::post('/login', 'Api\UserController@login');
 
 Route::group(['middleware' => 'auth:api', 'prefix' => 'user'], static function () {
     Route::get('/', 'Api\UserController@user');
 });
+
+Route::group(['middleware' => 'auth:api', 'prefix' => 'info'], static function () {
+    Route::get('/', 'Api\ApplicationController@index');
+});
+
 

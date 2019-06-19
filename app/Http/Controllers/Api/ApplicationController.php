@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\Api;
 
 
-use App\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Symfony\Component\HttpFoundation\Request;
 
 class ApplicationController
 {
-    public function index(){
+    /**
+     * @return JsonResponse
+     */
+    public function index(): JsonResponse
+    {
         return new JsonResponse([
-           'force_update' => false
+            'application_version' => 123,
+            'language_file_version' => 23,
+            'force_update' => false,
+            'soft_update' => false,
+            'language_file_update' => false
         ]);
     }
 }
