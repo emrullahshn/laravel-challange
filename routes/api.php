@@ -27,4 +27,8 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'categories'], static func
     Route::post('/{id}', 'Api\CategoryController@getCategoryDetails');
 });
 
+Route::group(['middleware' => 'auth:api', 'prefix' => 'songs'], static function () {
+    Route::post('/listen/{id}', 'Api\SongController@getSong');
+});
+
 
