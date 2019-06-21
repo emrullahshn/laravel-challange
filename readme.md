@@ -22,14 +22,20 @@ FLUSH PRIVILEGES;
 EXIT;
 exit
 
-Connection Refused hatasında yapılması gerekenler;
+## Connection Refused hatasında yapılması gerekenler;
 
 - "docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)"
 - docker container her up edildiğinde db farklı ip alabilir. Bu command ile ip alınıp .env dosyasında gerekli değişiklik yapılmalıdır.
 - Değişiklikten sonra "docker-compose exec app php artisan config:cache" çalıştırılmalıdır.
 
 
-Routes
+## Database Seed
+docker-compose exec app php artisan db:seed
+
+"email": "test@gmail.com"
+"password": "secret"
+
+## Routes
 
 "api/login" => Login için kullanılır.
 

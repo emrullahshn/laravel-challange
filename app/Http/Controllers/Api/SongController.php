@@ -11,9 +11,9 @@ class SongController
 {
     /**
      * @param int $id
-     * @return BinaryFileResponse
+     * @return JsonResponse|BinaryFileResponse
      */
-    public function getSong(int $id): BinaryFileResponse
+    public function getSong(int $id)
     {
         $song = Song::find($id)->first();
 

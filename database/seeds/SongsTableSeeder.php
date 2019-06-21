@@ -14,7 +14,7 @@ class SongsTableSeeder extends Seeder
     {
         DB::table('songs')->insert([
             'name' => 'Test Song',
-            'path' => '/Users/emrullahsahin/Sites/laravel-app/storage/songs/SampleAudio.mp3',
+            'path' => storage_path().'/songs/SampleAudio.mp3',
         ]);
     }
 }
