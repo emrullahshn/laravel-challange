@@ -24,11 +24,17 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'info'], static function (
 
 Route::group(['middleware' => 'auth:api', 'prefix' => 'categories'], static function () {
     Route::get('/', 'Api\CategoryController@getAll');
-    Route::post('/{id}', 'Api\CategoryController@getCategoryDetails');
+    Route::get('/{id}', 'Api\CategoryController@getCategoryDetails');
 });
 
 Route::group(['middleware' => 'auth:api', 'prefix' => 'songs'], static function () {
-    Route::post('/listen/{id}', 'Api\SongController@getSong');
+    Route::get('/listen/{id}', 'Api\SongController@getSong');
+});
+
+Route::group(['middleware' => 'auth:api', 'prefix' => 'favorites'], static function () {
+    Route::post('/add', 'Api\FavoriteController@add');
+    Route::post('/remove', 'Api\FavoriteController@remove');
+    Route::get('/list', 'Api\FavoriteController@list');
 });
 
 

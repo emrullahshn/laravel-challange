@@ -19,17 +19,27 @@ class UserController
      */
     public function login(Request $request): JsonResponse
     {
-        $params =$request->all();
+        $params = $request->all();
 
         /**
          * @var User $user
          */
         $user = User::where('email', $params['email'])->first();
+
+        if ($user === null) {
+            return new JsonResponse([
+                'error' => [
+                    'status' => 404,
+                    'message' => 'User not found!'
+                ]
+            ]);
+        }
+
+
         if (Hash::check($request->password, $user->password)) {
             $user->api_token = Str::random(60);
             $user->save();
-            return response()->json([
-                'status' => 200,
+            return new JsonResponse([
                 'api_token' => $user->api_token,
                 'username' => $user->name,
                 'email' => $user->email,
@@ -37,8 +47,10 @@ class UserController
             ]);
         }
         return response()->json([
-            'status' => 401,
-            'message' => 'Unauthenticated.'
+            'error' => [
+                'status' => 401,
+                'message' => 'Unauthenticated.'
+            ]
         ]);
     }
 

@@ -6,19 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Song extends Model
 {
-    /**
-     * Get the user that owns the song.
-     */
-    public function post()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Get the user that owns the song.
-     */
-    public function category()
+    public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class,'favorites');
     }
 }
