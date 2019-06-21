@@ -35,6 +35,9 @@ docker-compose exec app php artisan db:seed
 "email": "test@gmail.com"
 "password": "secret"
 
+## Postman Collection
+https://www.getpostman.com/collections/eda460f04ea9d889b9ae
+
 ## Routes
 
 "api/login" => Login için kullanılır.

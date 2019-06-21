@@ -15,7 +15,7 @@ class SongController
      */
     public function getSong(int $id)
     {
-        $song = Song::find($id)->first();
+        $song = Song::find($id);
 
         if ($song === null){
             return new JsonResponse([
@@ -25,6 +25,8 @@ class SongController
                 ]
             ]);
         }
+
+        $song = $song->first();
 
         $path = $song->path;
 
